@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
+import { useState, useRef } from "react";
 
 export default function AvatarUploadPage() {
   const inputFileRef = useRef(null);
@@ -10,21 +10,22 @@ export default function AvatarUploadPage() {
       <h1>Upload Your Avatar</h1>
 
       <form
-        onSubmit={async (event) => {
-          event.preventDefault();
+        onSubmit={async (e) => {
+          e.preventDefault();
 
           const file = inputFileRef.current.files[0];
 
+          console.log(file);
           const response = await fetch(
-            `/api/upload?filename=${file.name}`,
+            `/api/upload/file?filename=${file.name}`,
             {
-              method: 'POST',
+              method: "POST",
               body: file,
-            },
+            }
           );
 
-          const newBlob = (await response.json());
-
+          const newBlob = await response.json();
+          console.log(newBlob);
           setBlob(newBlob);
         }}
       >
