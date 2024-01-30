@@ -11,9 +11,9 @@ export default function AvatarUploadPage() {
     navigator.clipboard.writeText(text.innerText);
     const button = document.getElementById("copybutton");
     button.innerText = "✔";
-    setTimeout(function () {
+    setTimeout(() => {
       button.innerText = "📋";
-    }, 2000);
+      }, 2000);
   }
 
   return (
@@ -34,14 +34,14 @@ export default function AvatarUploadPage() {
               {
                 method: "POST",
                 body: file,
-              }
+              },
             );
 
             const newBlob = await response.json();
             console.log(newBlob);
             setBlob(newBlob);
           }}
-        >
+          >
           <label htmlFor="Upload" className="text-xl">
             Select file to Upload
           </label>
@@ -55,7 +55,7 @@ export default function AvatarUploadPage() {
           <button
             type="submit"
             className="bg-white text-black rounded-md text-xl font-medium p-1"
-          >
+            >
             Upload
           </button>
         </form>
@@ -73,7 +73,7 @@ export default function AvatarUploadPage() {
                   e.preventDefault();
                   copytext();
                 }}
-              >
+                >
                 📋
               </button>
             </div>
