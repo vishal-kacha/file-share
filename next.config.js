@@ -5,7 +5,10 @@ const withPWA = require("next-pwa")({
   skipWaiting: true,
 });
 
-const nextConfig = {
-}
+const nextConfig = withPWA({
+  experimental : {
+    webpackBuildWorker: true
+  }
+})
 
-module.exports = withPWA()
+module.exports = nextConfig
