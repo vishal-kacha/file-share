@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
+import QRCode from "qrcode.react";
 import axios from "axios";
 
 export default function AvatarUploadPage() {
@@ -45,7 +46,6 @@ export default function AvatarUploadPage() {
             Share your files quickly and easily
           </p>
         </div>
-
         <form
           className="bg-gray-900 rounded-lg shadow-2xl p-8 space-y-6 border border-blue-500/20"
           onSubmit={(e) => {
@@ -110,7 +110,6 @@ export default function AvatarUploadPage() {
             )}
           </button>
         </form>
-
         {uploadMutation.isSuccess && uploadMutation.data && (
           <div className="bg-gray-900 rounded-lg p-6 space-y-4 border border-blue-500/20">
             <h2 className="text-2xl font-semibold text-blue-400 text-center">
@@ -129,7 +128,17 @@ export default function AvatarUploadPage() {
             </div>
           </div>
         )}
-
+        {uploadMutation.isSuccess && uploadMutation.data && (
+          <div className="mt-4 flex justify-center">
+            <QRCode
+              value={uploadMutation.data.url}
+              size={200}
+              level="H"
+              includeMargin
+              className="bg-white p-2 rounded-lg"
+            />
+          </div>
+        )}
         {uploadMutation.isError && (
           <div className="bg-red-900/30 border border-red-500 rounded-lg p-4">
             <p className="text-red-200">
