@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
-import QRCode from "qrcode.react";
+import { QRCodeSVG } from "qrcode.react";
 import axios from "axios";
 
 export default function AvatarUploadPage() {
@@ -130,11 +130,10 @@ export default function AvatarUploadPage() {
         )}
         {uploadMutation.isSuccess && uploadMutation.data && (
           <div className="mt-4 flex justify-center">
-            <QRCode
+            <QRCodeSVG
               value={uploadMutation.data.url}
               size={200}
               level="H"
-              includeMargin
               className="bg-white p-2 rounded-lg"
             />
           </div>
